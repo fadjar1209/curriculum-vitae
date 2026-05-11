@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fadjar — Software Engineer & Personal Finance Builder</title>
+  <meta name="description" content="CV & portfolio pribadi Fadjar — Software Engineer, Laravel & Node.js developer, pengelola arusduit.id dan stock-analyst Indonesia.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.5s ease-out forwards',
+            'pulse-slow': 'pulse 3s infinite',
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    [x-cloak] { display: none !important; }
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15); }
+    .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; color: #667eea; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .timeline-dot {
+      position: absolute; left: -8px; top: 4px; width: 16px; height: 16px;
+      border-radius: 50%; border: 3px solid #667eea; background: white;
+    }
+    .dark .timeline-dot { background: #1e1b4b; }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 antialiased transition-colors duration-300" x-data="{ darkMode: false }" x-init="darkMode = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches); if(darkMode) document.documentElement.classList.add('dark')" x-cloak>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="text-xl font-bold gradient-text">Fadjar</a>
+        <div class="flex items-center gap-4 sm:gap-6">
+          <a href="#about" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">Tentang</a>
+          <a href="#experience" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">Pengalaman</a>
+          <a href="#projects" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">Proyek</a>
+          <a href="#skills" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">Skill</a>
+          <a href="#contact" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">Kontak</a>
+          <button @click="darkMode = !darkMode; localStorage.setItem('theme', darkMode ? 'dark' : 'light'); document.documentElement.classList.toggle('dark')" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition" aria-label="Toggle dark mode">
+            <svg x-show="!darkMode" class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg x-show="darkMode" class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center pt-16 pb-8 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 opacity-50"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-indigo-300 dark:bg-indigo-800 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-pulse-slow"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 dark:bg-purple-800 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="mb-6 animate-fade-in">
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-1 mb-6">
+          <div class="w-full h-full rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-4xl">👨‍💻</div>
+        </div>
+      </div>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 animate-fade-in"><span class="gradient-text">Fadjar</span></h1>
+      <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 mb-4 font-light animate-slide-up typing-cursor">Software Engineer &amp; Personal Finance Builder</p>
+      <p class="text-base text-gray-500 dark:text-gray-500 max-w-xl mx-auto mb-8 animate-slide-up" style="animation-delay: 0.2s;">Membangun solusi finansial digital &amp; analitik pasar saham Indonesia.</p>
+      <div class="flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.4s;">
+        <a href="#projects" class="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-700 hover:to-purple-700 transition shadow-lg shadow-indigo-500/25">Lihat Proyek</a>
+        <a href="#contact" class="px-8 py-3 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-full hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Kontak Saya</a>
+      </div>
+      <div class="flex justify-center gap-6 mt-10 animate-slide-up" style="animation-delay: 0.6s;">
+        <a href="https://github.com/fadjar1209" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://linkedin.com/in/taufik-fadjar-a860a860" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-600 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:fadjar1209@gmail.com" class="text-gray-400 hover:text-red-500 transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+        <a href="https://arusduit.id" target="_blank" rel="noopener" class="text-gray-400 hover:text-emerald-500 transition font-semibold text-sm flex items-center gap-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v2m0 4v2m0 4v2"/></svg> arusduit.id</a>
+      </div>
+      <div class="mt-8"><a href="#about" class="inline-flex items-center text-gray-400 dark:text-gray-600 animate-bounce"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 px-4 bg-gray-50 dark:bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text">Tentang Saya</h2>
+      <p class="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Software engineer &amp; penggiat personal finance yang suka ngoding solusi praktis.</p>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p>Saya seorang <strong class="text-gray-800 dark:text-gray-200">Software Engineer</strong> dengan pengalaman 11+ tahun di industri teknologi, spesialisasi di <strong class="text-gray-800 dark:text-gray-200">Laravel</strong>, <strong class="text-gray-800 dark:text-gray-200">Node.js</strong>, dan pengembangan aplikasi web finansial.</p>
+          <p>Saat ini saya aktif membangun <a href="https://arusduit.id" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">arusduit.id</a> — platform personal finance tracker all-in-one, dan <a href="https://github.com/fadjar1209/stock-analyst" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Stock Analyst Indonesia</a> — tools analitik real-time untuk pasar saham IDX.</p>
+          <p>Di luar coding, saya aktif di pasar modal Indonesia sebagai investor ritel dan analyst yang melakukan riset fundamental &amp; teknikal secara rutin.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <div class="text-3xl font-bold gradient-text">11+</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Tahun Pengalaman</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <div class="text-3xl font-bold gradient-text">2</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Proyek Live</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <div class="text-3xl font-bold gradient-text">PHP</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Laravel Stack</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <div class="text-3xl font-bold gradient-text">JS</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">Node.js Stack</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text">Pengalaman</h2>
+      <p class="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Perjalanan karir sebagai software engineer.</p>
+      <div class="relative pl-8 border-l-2 border-indigo-200 dark:border-indigo-800 space-y-12">
+        <div class="relative"><div class="timeline-dot"></div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <h3 class="text-lg font-bold">Software Engineer</h3>
+              <span class="px-3 py-1 text-xs font-medium bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full">Current</span>
+            </div>
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium">Palador</p>
+            <p class="text-xs text-gray-400 mb-3">Jakarta • 11+ years</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Mengembangkan dan memelihara aplikasi enterprise berbasis web dengan stack PHP/Laravel. Bertanggung jawab atas arsitektur backend, integrasi API, dan optimasi performa database.</p>
+          </div>
+        </div>
+        <div class="relative"><div class="timeline-dot"></div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <h3 class="text-lg font-bold mb-1">Founder & Developer</h3>
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium">arusduit.id</p>
+            <p class="text-xs text-gray-400 mb-3">2024 - Sekarang</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Membangun platform personal finance tracker dari nol menggunakan Laravel + FrankenPHP + PostgreSQL. Fitur: transaksi multi-kategori, investasi tracker, loan management, integrasi Telegram Bot, dashboard interaktif, dan auto-verifikasi user via Telegram.</p>
+          </div>
+        </div>
+        <div class="relative"><div class="timeline-dot"></div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover">
+            <h3 class="text-lg font-bold mb-1">Creator — Stock Analyst Indonesia</h3>
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium">Open Source Project</p>
+            <p class="text-xs text-gray-400 mb-3">2025 - Sekarang</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Mengembangkan API analitik saham IDX real-time berbasis Node.js. Endpoints: quote, fundamental, teknikal, news screening, indices, macro risk scoring, portfolio risk summary, dan 5-perspective analysis engine. Terintegrasi dengan Erdikha API.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 px-4 bg-gray-50 dark:bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text">Proyek Unggulan</h2>
+      <p class="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Beberapa proyek yang saya bangun dan maintain.</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden card-hover">
+          <div class="h-2 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-lg">💰</span>
+              <div><h3 class="font-bold text-lg">arusduit.id</h3><p class="text-xs text-gray-400">Personal Finance Tracker</p></div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Platform all-in-one untuk tracking keuangan pribadi. Kelola pemasukan, pengeluaran, investasi, dan hutang dalam satu dashboard. Dilengkapi integrasi Telegram Bot untuk notifikasi real-time dan customer management.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Laravel</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">FrankenPHP</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">PostgreSQL</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Tailwind</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Telegram Bot</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="https://arusduit.id" target="_blank" rel="noopener" class="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg> Live Demo</a>
+              <a href="https://github.com/fadjar1209/arusduit" target="_blank" rel="noopener" class="text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 inline-flex items-center gap-1"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Source</a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden card-hover">
+          <div class="h-2 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-lg">📈</span>
+              <div><h3 class="font-bold text-lg">Stock Analyst Indonesia</h3><p class="text-xs text-gray-400">IDX Market Analytics API</p></div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">REST API real-time untuk analisis saham Indonesia (BEI/IDX). Fitur: quote live, skrining fundamental &amp; teknikal, berita pasar, analisis 5 perspektif, macro risk scoring, portfolio risk management, dan stop-loss proximity alert.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Node.js</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Express</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Erdikha API</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Docker</span>
+              <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 rounded-full">Redis</span>
+            </div>
+            <a href="https://github.com/fadjar1209/stock-analyst" target="_blank" rel="noopener" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text">Keahlian</h2>
+      <p class="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Tech stack &amp; tools yang saya kuasai.</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6">Backend</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-sm mb-1"><span>PHP / Laravel</span><span class="text-gray-400">95%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 95%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Node.js / Express</span><span class="text-gray-400">88%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 88%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>PostgreSQL / MySQL</span><span class="text-gray-400">90%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 90%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Redis / Docker</span><span class="text-gray-400">82%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 82%"></div></div></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6">Frontend & Tools</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-sm mb-1"><span>JavaScript / jQuery</span><span class="text-gray-400">85%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 85%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Tailwind CSS</span><span class="text-gray-400">88%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 88%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Alpine.js / Livewire</span><span class="text-gray-400">78%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 78%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>REST API Design</span><span class="text-gray-400">92%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 92%"></div></div></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6">Domain & Interest</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-sm mb-1"><span>Personal Finance</span><span class="text-gray-400">90%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 90%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Stock Market Analysis</span><span class="text-gray-400">85%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 85%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>DevOps (Docker)</span><span class="text-gray-400">75%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 75%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Telegram Bot Dev</span><span class="text-gray-400">80%</span></div><div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" style="width: 80%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-4 bg-gray-50 dark:bg-gray-900/50">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 gradient-text">Hubungi Saya</h2>
+      <p class="text-gray-500 dark:text-gray-400 mb-10 max-w-lg mx-auto">Ada proyek menarik atau sekedar diskusi? Jangan ragu untuk menghubungi.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+        <a href="mailto:fadjar1209@gmail.com" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-xl group-hover:scale-110 transition">📧</div>
+          <div class="text-left"><p class="font-medium">Email</p><p class="text-sm text-gray-500 dark:text-gray-400">fadjar1209@gmail.com</p></div>
+        </a>
+        <a href="https://github.com/fadjar1209" target="_blank" rel="noopener" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-xl group-hover:scale-110 transition">🐙</div>
+          <div class="text-left"><p class="font-medium">GitHub</p><p class="text-sm text-gray-500 dark:text-gray-400">/fadjar1209</p></div>
+        </a>
+        <a href="https://linkedin.com/in/taufik-fadjar-a860a860" target="_blank" rel="noopener" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-xl group-hover:scale-110 transition">💼</div>
+          <div class="text-left"><p class="font-medium">LinkedIn</p><p class="text-sm text-gray-500 dark:text-gray-400">/in/taufik-fadjar</p></div>
+        </a>
+        <a href="https://arusduit.id" target="_blank" rel="noopener" class="group bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 card-hover flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-xl group-hover:scale-110 transition">🌐</div>
+          <div class="text-left"><p class="font-medium">Web</p><p class="text-sm text-gray-500 dark:text-gray-400">arusduit.id</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-sm text-gray-400">© 2026 Fadjar. Dibangun dengan <span class="text-red-500">♥</span> dan Tailwind CSS.</p>
+      <p class="text-xs text-gray-500 mt-2">
+        <a href="https://github.com/fadjar1209/curriculum-vitae" target="_blank" rel="noopener" class="hover:underline">Source code</a>
+      </p>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
